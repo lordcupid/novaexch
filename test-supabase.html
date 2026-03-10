@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head><title>Supabase Test</title></head>
+<body>
+    <h1>Supabase Connection Test</h1>
+    <div id="results" style="font-family: monospace; white-space: pre; padding: 20px;"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const results = document.getElementById('results');
+        function log(msg) {
+            results.textContent += msg + '\n';
+            console.log(msg);
+        }
+
+        // Test 1: Check if Supabase CDN loaded
+        log('1. window.supabase exists: ' + (typeof window.supabase !== 'undefined'));
+        log('   window.supabase type: ' + typeof window.supabase);
+        if (window.supabase) {
+            log('   window.supabase keys: ' + Object.keys(window.supabase).join(', '));
+            log('   createClient exists: ' + (typeof window.supabase.createClient === 'function'));
+        }
+    </script>
+    <script src="supabase-config.js"></script>
+    <script>
+        // Test 2: Check if supabase-config.js loaded
+        log('\n2. supabase client initialized: ' + (typeof supabaseClient !== 'undefined' && supabaseClient !== null));
+        log('   signUp function exists: ' + (typeof signUp === 'function'));
+        log('   signIn function exists: ' + (typeof signIn === 'function'));
+
+        // Test 3: Try a signup
+        if (typeof signUp === 'function') {
+            log('\n3. Testing signUp call...');
+            signUp('test_' + Date.now() + '@example.com', 'TestPassword123!', {
+                first_name: 'Test',
+                last_name: 'User',
+                phone: '1234567890',
+                country: 'US'
+            }).then(result => {
+                log('   signUp result: ' + JSON.stringify(result, null, 2));
+            }).catch(err => {
+                log('   signUp error: ' + err.message);
+            });
+        } else {
+            log('\n3. SKIPPED - signUp not available');
+        }
+    </script>
+</body>
+</html>

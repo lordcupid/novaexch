@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovoExch | Your Personal Crypto Brokerage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="#fc4c4c"/>
+                        <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white" opacity="0.9"/>
+                        <path d="M12 16L16 12L20 16L16 20L12 16Z" fill="#fc4c4c"/>
+                    </svg>
+                </span>
+                <span class="logo-text">NovoExch</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#services">What We Do</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#about">About</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="signup.html">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-login">Log In</a>
+                <a href="signup.html" class="btn-primary">Get Started</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Trusted by 21,000+ clients worldwide
+                </div>
+                <h1>Your Personal<br><span class="text-accent">Crypto Brokerage</span></h1>
+                <p class="hero-subtitle">Buy, sell, and swap 300+ cryptocurrencies with a dedicated broker by your side. Experience personalised service, expert guidance, and seamless trading — 24/7.</p>
+                <div class="hero-ctas">
+                    <a href="signup.html" class="btn-primary btn-lg">Start Trading Today</a>
+                    <a href="#how-it-works" class="btn-outline btn-lg">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M8 6.5L13.5 10L8 13.5V6.5Z" fill="currentColor"/>
+                        </svg>
+                        How It Works
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <div class="trust-avatars">
+                        <div class="avatar" style="background: #4a6cf7;">J</div>
+                        <div class="avatar" style="background: #fc4c4c;">M</div>
+                        <div class="avatar" style="background: #0cad56;">S</div>
+                        <div class="avatar" style="background: #f59e0b;">A</div>
+                    </div>
+                    <div class="trust-info">
+                        <div class="trust-stars">★★★★★</div>
+                        <span>4.7/5 from 600+ reviews</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card main-card">
+                    <div class="card-header">
+                        <span class="card-label">Portfolio Value</span>
+                        <span class="card-badge-green">+12.4%</span>
+                    </div>
+                    <div class="card-value">$248,392.50</div>
+                    <div class="card-chart">
+                        <svg viewBox="0 0 300 80" class="chart-line">
+                            <polyline points="0,60 30,55 60,45 90,50 120,35 150,40 180,25 210,30 240,15 270,20 300,5" fill="none" stroke="#fc4c4c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#fc4c4c" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#fc4c4c" stop-opacity="0"/>
+                            </linearGradient>
+                            <polyline points="0,60 30,55 60,45 90,50 120,35 150,40 180,25 210,30 240,15 270,20 300,5 300,80 0,80" fill="url(#chartGrad)"/>
+                        </svg>
+                    </div>
+                    <div class="card-assets">
+                        <div class="asset-item">
+                            <div class="asset-icon btc">₿</div>
+                            <div class="asset-info">
+                                <span class="asset-name">Bitcoin</span>
+                                <span class="asset-price">$67,842.30</span>
+                            </div>
+                            <span class="asset-change positive">+5.2%</span>
+                        </div>
+                        <div class="asset-item">
+                            <div class="asset-icon eth">Ξ</div>
+                            <div class="asset-info">
+                                <span class="asset-name">Ethereum</span>
+                                <span class="asset-price">$3,521.18</span>
+                            </div>
+                            <span class="asset-change positive">+3.8%</span>
+                        </div>
+                        <div class="asset-item">
+                            <div class="asset-icon sol">◎</div>
+                            <div class="asset-info">
+                                <span class="asset-name">Solana</span>
+                                <span class="asset-price">$142.65</span>
+                            </div>
+                            <span class="asset-change positive">+8.1%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-card floating-card card-notification">
+                    <div class="notif-icon">✓</div>
+                    <div class="notif-text">
+                        <span class="notif-title">Trade Executed</span>
+                        <span class="notif-desc">2.5 BTC purchased successfully</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="21000">0</div>
+                    <div class="stat-label">Active Clients</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="300">0</div>
+                    <div class="stat-label">Cryptocurrencies</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number dollar" data-target="3">0</div>
+                    <div class="stat-label">Billion+ Traded</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">What We Do</span>
+                <h2>A Smarter Way to<br><span class="text-accent">Trade Crypto</span></h2>
+                <p class="section-subtitle">Whether you're a first-time buyer or a seasoned investor, our dedicated brokers provide personalised service tailored to your needs.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Personal Brokerage</h3>
+                    <p>Get matched with a dedicated crypto broker who understands your investment goals and provides expert guidance every step of the way.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <h3>OTC Trading</h3>
+                    <p>Execute large-volume trades with competitive pricing and minimal market impact through our deep liquidity network and OTC desk.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <path d="M8 21h8"/>
+                            <path d="M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h3>Portfolio Management</h3>
+                    <p>Receive personalised portfolio reports, market insights, and strategic recommendations to optimise your crypto holdings.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Secure Storage</h3>
+                    <p>Your assets are safeguarded with institutional-grade security, cold storage solutions, and comprehensive insurance coverage.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3>Global Access</h3>
+                    <p>Trade from anywhere in the world with support for multiple fiat currencies, international transfers, and 24/7 broker availability.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <h3>Expert Support</h3>
+                    <p>Access market analysis, educational resources, and direct communication with your broker via phone, email, or live chat.</p>
+                    <a href="#" class="service-link">Learn more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">How It Works</span>
+                <h2>Get Started in<br><span class="text-accent">Three Simple Steps</span></h2>
+                <p class="section-subtitle">From sign-up to your first trade, we make crypto investing simple and accessible for everyone.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Create Your Account</h3>
+                        <p>Sign up in minutes with our streamlined onboarding process. Complete verification and set your investment preferences.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fc4c4c" stroke-width="1.5">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <path d="M10 20h20M25 15l5 5-5 5" stroke="#fc4c4c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Meet Your Broker</h3>
+                        <p>Get paired with a dedicated crypto broker who'll learn your goals, risk tolerance, and guide your investment strategy.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fc4c4c" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                        <path d="M10 20h20M25 15l5 5-5 5" stroke="#fc4c4c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Start Trading</h3>
+                        <p>Buy, sell, and swap 300+ cryptocurrencies with personalised support. Deposit via bank transfer, crypto, or card.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon-wrap">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fc4c4c" stroke-width="1.5">
+                                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                                <polyline points="17 6 23 6 23 12"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About / Why Choose Us -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-tag">Why NovoExch</span>
+                    <h2>The Human Touch in<br><span class="text-accent">Digital Finance</span></h2>
+                    <p>Unlike automated exchanges, we pair you with a real person — a dedicated broker who knows the market and knows you. It's crypto investing made personal.</p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="feature-check">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <circle cx="10" cy="10" r="10" fill="#fc4c4c" opacity="0.15"/>
+                                    <path d="M6 10l3 3 5-6" stroke="#fc4c4c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Transparent Fees</strong>
+                                <p>No hidden charges. Know exactly what you're paying before every trade.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-check">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <circle cx="10" cy="10" r="10" fill="#fc4c4c" opacity="0.15"/>
+                                    <path d="M6 10l3 3 5-6" stroke="#fc4c4c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Rapid Execution</strong>
+                                <p>Fast trade execution with real-time pricing and deep liquidity pools.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="feature-check">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <circle cx="10" cy="10" r="10" fill="#fc4c4c" opacity="0.15"/>
+                                    <path d="M6 10l3 3 5-6" stroke="#fc4c4c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <strong>Reduced Risk</strong>
+                                <p>Institutional-grade security and compliance-first approach to protect your assets.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="signup.html" class="btn-primary btn-lg">Talk to a Broker</a>
+                </div>
+                <div class="about-visual">
+                    <div class="about-image-card">
+                        <div class="about-graphic">
+                            <div class="graphic-circle outer"></div>
+                            <div class="graphic-circle middle"></div>
+                            <div class="graphic-circle inner"></div>
+                            <div class="graphic-center">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fc4c4c" stroke-width="1.5">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                    <path d="M9 12l2 2 4-4"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="about-stat-card stat-card-1">
+                            <div class="mini-stat-icon">🔒</div>
+                            <div>
+                                <div class="mini-stat-value">100%</div>
+                                <div class="mini-stat-label">Secure Storage</div>
+                            </div>
+                        </div>
+                        <div class="about-stat-card stat-card-2">
+                            <div class="mini-stat-icon">⚡</div>
+                            <div>
+                                <div class="mini-stat-value">24/7</div>
+                                <div class="mini-stat-label">Broker Support</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Testimonials</span>
+                <h2>Trusted by Thousands of<br><span class="text-accent">Crypto Investors</span></h2>
+                <p class="section-subtitle">Don't just take our word for it. Here's what our clients have to say about their experience.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"Having a dedicated broker made all the difference. They guided me through my first Bitcoin purchase and I've been a loyal client for over 3 years now."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #4a6cf7;">J</div>
+                        <div>
+                            <div class="author-name">James Mitchell</div>
+                            <div class="author-role">Private Investor</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card featured">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"The OTC desk is exceptional. We've executed seven-figure trades with minimal slippage and outstanding service. Their team truly understands institutional needs."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #fc4c4c;">S</div>
+                        <div>
+                            <div class="author-name">Sarah Chen</div>
+                            <div class="author-role">CFO, TechVentures</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p>"I've used many exchanges, but nothing compares to having a real person guide you. The personalised insights and market updates are invaluable."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: #0cad56;">R</div>
+                        <div>
+                            <div class="author-name">Robert Keller</div>
+                            <div class="author-role">Crypto Enthusiast</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <rect width="32" height="32" rx="8" fill="#fc4c4c"/>
+                                <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white" opacity="0.9"/>
+                                <path d="M12 16L16 12L20 16L16 20L12 16Z" fill="#fc4c4c"/>
+                            </svg>
+                        </span>
+                        <span class="logo-text">NovoExch</span>
+                    </a>
+                    <p class="footer-desc">Your personal crypto brokerage. Expert guidance, personalised service, and secure trading — all in one place.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Telegram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Meet the Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">News</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <a href="#">Personal Brokerage</a>
+                    <a href="#">OTC Trading</a>
+                    <a href="#">Portfolio Management</a>
+                    <a href="#">Secure Storage</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Crypto Guides</a>
+                    <a href="#">Market Updates</a>
+                    <a href="#">API Documentation</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">AML Policy</a>
+                    <a href="#">Risk Disclosure</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NovoExch. All rights reserved.</p>
+                <p>NovoExch is a registered trading name. Cryptocurrency trading involves significant risk.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | NovoExch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>.dashboard-loading{display:flex;align-items:center;justify-content:center;height:100vh;width:100%;font-family:var(--font-heading);color:rgba(255,255,255,0.5);font-size:1.1rem;}.dashboard-loading .spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,0.1);border-top-color:#fc4c4c;border-radius:50%;animation:spin .8s linear infinite;margin-right:14px;}@keyframes spin{to{transform:rotate(360deg)}}</style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="8" fill="#fc4c4c"/>
+                    <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white" opacity="0.9"/>
+                    <path d="M12 16L16 12L20 16L16 20L12 16Z" fill="#fc4c4c"/>
+                </svg>
+                <span>NovoExch</span>
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <span class="nav-section-title">Main</span>
+                <a href="#" class="nav-item active" data-page="overview">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Overview
+                </a>
+                <a href="#" class="nav-item" data-page="portfolio">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+                    Portfolio
+                </a>
+                <a href="#" class="nav-item" data-page="trade">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    Trade
+                </a>
+                <a href="#" class="nav-item" data-page="markets">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    Markets
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-title">Account</span>
+                <a href="#" class="nav-item" data-page="transactions">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Transactions
+                </a>
+                <a href="#" class="nav-item" data-page="broker">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    My Broker
+                </a>
+                <a href="#" class="nav-item" data-page="settings">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    Settings
+                </a>
+            </div>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar">JD</div>
+                <div class="user-info">
+                    <span class="user-name">John Doe</span>
+                    <span class="user-email">john@example.com</span>
+                </div>
+                <button class="user-menu-btn" id="userMenuBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                </button>
+            </div>
+            <div class="user-dropdown" id="userDropdown">
+                <a href="#" class="dropdown-item" data-page="settings">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4"/></svg>
+                    Account Settings
+                </a>
+                <a href="index.html" class="dropdown-item logout">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Log Out
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <div class="topbar-greeting">
+                    <h1>Good Morning, <span>John</span></h1>
+                    <p>Here's what's happening with your portfolio today.</p>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <div class="search-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                    <input type="text" placeholder="Search assets...">
+                </div>
+                <button class="topbar-btn notification-btn" id="notifBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    <span class="notif-badge">3</span>
+                </button>
+                <button class="topbar-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content" data-page="overview">
+
+            <!-- Portfolio Summary Cards -->
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-icon blue">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></svg>
+                    </div>
+                    <div class="summary-info">
+                        <span class="summary-label">Total Balance</span>
+                        <span class="summary-value">$0.00</span>
+                        <span class="summary-change positive">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                            +12.4% this month
+                        </span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon green">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                    </div>
+                    <div class="summary-info">
+                        <span class="summary-label">Total Profit/Loss</span>
+                        <span class="summary-value profit">+$28,741.20</span>
+                        <span class="summary-change positive">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                            +8.2% all time
+                        </span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon orange">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <div class="summary-info">
+                        <span class="summary-label">Pending Orders</span>
+                        <span class="summary-value">3</span>
+                        <span class="summary-change neutral">Awaiting execution</span>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon red">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="summary-info">
+                        <span class="summary-label">Total Assets</span>
+                        <span class="summary-value">12</span>
+                        <span class="summary-change neutral">Across 4 categories</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="overview-actions">
+                <button class="overview-action-btn withdraw-btn" id="withdrawBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5"/>
+                        <polyline points="5 12 12 5 19 12"/>
+                    </svg>
+                    Withdraw Funds
+                </button>
+                <button class="overview-action-btn deposit-btn" id="depositBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <polyline points="19 12 12 19 5 12"/>
+                    </svg>
+                    Deposit
+                </button>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="dashboard-grid">
+                <!-- Chart Section -->
+                <div class="card chart-card">
+                    <div class="card-top">
+                        <h3>Portfolio Performance</h3>
+                        <div class="chart-tabs">
+                            <button class="chart-tab active">1D</button>
+                            <button class="chart-tab">1W</button>
+                            <button class="chart-tab">1M</button>
+                            <button class="chart-tab">3M</button>
+                            <button class="chart-tab">1Y</button>
+                            <button class="chart-tab">All</button>
+                        </div>
+                    </div>
+                    <div class="chart-area">
+                        <svg viewBox="0 0 800 250" class="portfolio-chart" id="portfolioChart">
+                            <defs>
+                                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#fc4c4c" stop-opacity="0.2"/>
+                                    <stop offset="100%" stop-color="#fc4c4c" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Grid lines -->
+                            <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                            <line x1="0" y1="100" x2="800" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                            <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                            <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                            <!-- Fill -->
+                            <path d="M0,180 C40,175 80,160 120,155 C160,150 200,140 240,130 C280,120 320,135 360,125 C400,115 440,100 480,90 C520,80 560,95 600,75 C640,65 680,50 720,55 C760,45 790,35 800,30 L800,250 L0,250 Z" fill="url(#chartGradient)"/>
+                            <!-- Line -->
+                            <path d="M0,180 C40,175 80,160 120,155 C160,150 200,140 240,130 C280,120 320,135 360,125 C400,115 440,100 480,90 C520,80 560,95 600,75 C640,65 680,50 720,55 C760,45 790,35 800,30" fill="none" stroke="#fc4c4c" stroke-width="2.5" stroke-linecap="round"/>
+                            <!-- Current point -->
+                            <circle cx="800" cy="30" r="5" fill="#fc4c4c"/>
+                            <circle cx="800" cy="30" r="8" fill="#fc4c4c" opacity="0.3"/>
+                        </svg>
+                        <div class="chart-labels">
+                            <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assets List -->
+                <div class="card assets-card">
+                    <div class="card-top">
+                        <h3>Your Assets</h3>
+                        <a href="#" class="card-link">View All</a>
+                    </div>
+                    <div class="assets-list">
+                        <div class="asset-row">
+                            <div class="asset-left">
+                                <div class="asset-icon-dash btc">₿</div>
+                                <div>
+                                    <span class="asset-name-dash">Bitcoin</span>
+                                    <span class="asset-ticker">BTC</span>
+                                </div>
+                            </div>
+                            <div class="asset-mid">
+                                <div class="mini-chart up">
+                                    <svg viewBox="0 0 60 24"><polyline points="0,18 10,16 20,12 30,14 40,8 50,6 60,2" fill="none" stroke="#0cad56" stroke-width="1.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="asset-right">
+                                <span class="asset-holdings">2.4581 BTC</span>
+                                <span class="asset-value-dash">$166,721.40</span>
+                                <span class="asset-pct positive">+5.2%</span>
+                            </div>
+                        </div>
+                        <div class="asset-row">
+                            <div class="asset-left">
+                                <div class="asset-icon-dash eth">Ξ</div>
+                                <div>
+                                    <span class="asset-name-dash">Ethereum</span>
+                                    <span class="asset-ticker">ETH</span>
+                                </div>
+                            </div>
+                            <div class="asset-mid">
+                                <div class="mini-chart up">
+                                    <svg viewBox="0 0 60 24"><polyline points="0,20 10,18 20,15 30,12 40,14 50,8 60,5" fill="none" stroke="#0cad56" stroke-width="1.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="asset-right">
+                                <span class="asset-holdings">14.82 ETH</span>
+                                <span class="asset-value-dash">$52,183.90</span>
+                                <span class="asset-pct positive">+3.8%</span>
+                            </div>
+                        </div>
+                        <div class="asset-row">
+                            <div class="asset-left">
+                                <div class="asset-icon-dash sol">◎</div>
+                                <div>
+                                    <span class="asset-name-dash">Solana</span>
+                                    <span class="asset-ticker">SOL</span>
+                                </div>
+                            </div>
+                            <div class="asset-mid">
+                                <div class="mini-chart up">
+                                    <svg viewBox="0 0 60 24"><polyline points="0,22 10,18 20,20 30,12 40,10 50,8 60,3" fill="none" stroke="#0cad56" stroke-width="1.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="asset-right">
+                                <span class="asset-holdings">85.40 SOL</span>
+                                <span class="asset-value-dash">$12,178.10</span>
+                                <span class="asset-pct positive">+8.1%</span>
+                            </div>
+                        </div>
+                        <div class="asset-row">
+                            <div class="asset-left">
+                                <div class="asset-icon-dash ada">₳</div>
+                                <div>
+                                    <span class="asset-name-dash">Cardano</span>
+                                    <span class="asset-ticker">ADA</span>
+                                </div>
+                            </div>
+                            <div class="asset-mid">
+                                <div class="mini-chart down">
+                                    <svg viewBox="0 0 60 24"><polyline points="0,4 10,6 20,8 30,10 40,14 50,16 60,20" fill="none" stroke="#fc4c4c" stroke-width="1.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="asset-right">
+                                <span class="asset-holdings">12,400 ADA</span>
+                                <span class="asset-value-dash">$8,184.00</span>
+                                <span class="asset-pct negative">-2.1%</span>
+                            </div>
+                        </div>
+                        <div class="asset-row">
+                            <div class="asset-left">
+                                <div class="asset-icon-dash usdt">₮</div>
+                                <div>
+                                    <span class="asset-name-dash">Tether</span>
+                                    <span class="asset-ticker">USDT</span>
+                                </div>
+                            </div>
+                            <div class="asset-mid">
+                                <div class="mini-chart neutral">
+                                    <svg viewBox="0 0 60 24"><polyline points="0,12 10,12 20,11 30,12 40,12 50,13 60,12" fill="none" stroke="#64748b" stroke-width="1.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="asset-right">
+                                <span class="asset-holdings">9,125 USDT</span>
+                                <span class="asset-value-dash">$9,125.10</span>
+                                <span class="asset-pct neutral-text">0.0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Trade -->
+                <div class="card trade-card">
+                    <div class="card-top">
+                        <h3>Quick Trade</h3>
+                    </div>
+                    <div class="trade-toggle">
+                        <button class="trade-tab active" data-action="buy">Buy</button>
+                        <button class="trade-tab" data-action="sell">Sell</button>
+                        <button class="trade-tab" data-action="swap">Swap</button>
+                    </div>
+                    <form class="trade-form" id="tradeForm">
+                        <div class="trade-field">
+                            <label>Asset</label>
+                            <div class="trade-select">
+                                <div class="asset-icon-dash btc small">₿</div>
+                                <select>
+                                    <option>Bitcoin (BTC)</option>
+                                    <option>Ethereum (ETH)</option>
+                                    <option>Solana (SOL)</option>
+                                    <option>Cardano (ADA)</option>
+                                    <option>Tether (USDT)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="trade-field">
+                            <label>Amount (USD)</label>
+                            <div class="trade-input-wrap">
+                                <span class="trade-currency">$</span>
+                                <input type="number" value="1000" min="10" step="10">
+                            </div>
+                            <div class="trade-presets">
+                                <button type="button" class="preset-btn">$100</button>
+                                <button type="button" class="preset-btn">$500</button>
+                                <button type="button" class="preset-btn active">$1K</button>
+                                <button type="button" class="preset-btn">$5K</button>
+                            </div>
+                        </div>
+                        <div class="trade-summary">
+                            <div class="trade-summary-row">
+                                <span>You'll receive (est.)</span>
+                                <span class="trade-receive">≈ 0.01474 BTC</span>
+                            </div>
+                            <div class="trade-summary-row">
+                                <span>Fee</span>
+                                <span>$2.50 (0.25%)</span>
+                            </div>
+                            <div class="trade-summary-row total">
+                                <span>Total</span>
+                                <span>$1,002.50</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="trade-btn">Buy Bitcoin</button>
+                    </form>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="card activity-card">
+                    <div class="card-top">
+                        <h3>Recent Activity</h3>
+                        <a href="#" class="card-link">View All</a>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon buy-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                            </div>
+                            <div class="activity-info">
+                                <span class="activity-title">Bought Bitcoin</span>
+                                <span class="activity-date">Mar 8, 2026 — 2:34 PM</span>
+                            </div>
+                            <div class="activity-amount">
+                                <span class="activity-value positive">+0.5 BTC</span>
+                                <span class="activity-usd">$33,921.15</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon sell-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+                            </div>
+                            <div class="activity-info">
+                                <span class="activity-title">Sold Ethereum</span>
+                                <span class="activity-date">Mar 7, 2026 — 10:15 AM</span>
+                            </div>
+                            <div class="activity-amount">
+                                <span class="activity-value negative">-2.0 ETH</span>
+                                <span class="activity-usd">$7,042.36</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon deposit-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/></svg>
+                            </div>
+                            <div class="activity-info">
+                                <span class="activity-title">Deposit — Bank Transfer</span>
+                                <span class="activity-date">Mar 5, 2026 — 9:00 AM</span>
+                            </div>
+                            <div class="activity-amount">
+                                <span class="activity-value positive">+$10,000.00</span>
+                                <span class="activity-usd">Completed</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon swap-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                            </div>
+                            <div class="activity-info">
+                                <span class="activity-title">Swapped SOL → ETH</span>
+                                <span class="activity-date">Mar 3, 2026 — 4:22 PM</span>
+                            </div>
+                            <div class="activity-amount">
+                                <span class="activity-value neutral-text">20 SOL → 0.81 ETH</span>
+                                <span class="activity-usd">$2,853.00</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon buy-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                            </div>
+                            <div class="activity-info">
+                                <span class="activity-title">Bought Solana</span>
+                                <span class="activity-date">Mar 1, 2026 — 11:45 AM</span>
+                            </div>
+                            <div class="activity-amount">
+                                <span class="activity-value positive">+45 SOL</span>
+                                <span class="activity-usd">$6,419.25</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Broker Card -->
+                <div class="card broker-card">
+                    <div class="card-top">
+                        <h3>Your Broker</h3>
+                    </div>
+                    <div class="broker-profile">
+                        <div class="broker-avatar">
+                            <div class="broker-avatar-inner">SM</div>
+                            <span class="broker-status online"></span>
+                        </div>
+                        <div class="broker-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Senior Crypto Broker</p>
+                            <div class="broker-rating">★★★★★ <span>4.9</span></div>
+                        </div>
+                    </div>
+                    <div class="broker-details">
+                        <div class="broker-detail">
+                            <span class="detail-label">Speciality</span>
+                            <span class="detail-value">BTC, ETH, DeFi</span>
+                        </div>
+                        <div class="broker-detail">
+                            <span class="detail-label">Experience</span>
+                            <span class="detail-value">6+ years</span>
+                        </div>
+                        <div class="broker-detail">
+                            <span class="detail-label">Availability</span>
+                            <span class="detail-value available">Online Now</span>
+                        </div>
+                    </div>
+                    <div class="broker-actions">
+                        <button class="broker-btn primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            Message
+                        </button>
+                        <button class="broker-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            Call
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Market Overview -->
+                <div class="card market-card">
+                    <div class="card-top">
+                        <h3>Market Overview</h3>
+                        <a href="#" class="card-link">See All</a>
+                    </div>
+                    <div class="market-list">
+                        <div class="market-row">
+                            <div class="market-left">
+                                <div class="asset-icon-dash btc small">₿</div>
+                                <span>BTC/USD</span>
+                            </div>
+                            <span class="market-price">$67,842.30</span>
+                            <span class="market-change positive">+5.2%</span>
+                        </div>
+                        <div class="market-row">
+                            <div class="market-left">
+                                <div class="asset-icon-dash eth small">Ξ</div>
+                                <span>ETH/USD</span>
+                            </div>
+                            <span class="market-price">$3,521.18</span>
+                            <span class="market-change positive">+3.8%</span>
+                        </div>
+                        <div class="market-row">
+                            <div class="market-left">
+                                <div class="asset-icon-dash sol small">◎</div>
+                                <span>SOL/USD</span>
+                            </div>
+                            <span class="market-price">$142.65</span>
+                            <span class="market-change positive">+8.1%</span>
+                        </div>
+                        <div class="market-row">
+                            <div class="market-left">
+                                <div class="asset-icon-dash ada small">₳</div>
+                                <span>ADA/USD</span>
+                            </div>
+                            <span class="market-price">$0.66</span>
+                            <span class="market-change negative">-2.1%</span>
+                        </div>
+                        <div class="market-row">
+                            <div class="market-left">
+                                <div class="asset-icon-dash xrp small">✕</div>
+                                <span>XRP/USD</span>
+                            </div>
+                            <span class="market-price">$0.58</span>
+                            <span class="market-change positive">+1.4%</span>
+                        </div>
+                        <div class="market-row">
+                            <div class="market-left">
+                                <div class="asset-icon-dash dot small">●</div>
+                                <span>DOT/USD</span>
+                            </div>
+                            <span class="market-price">$7.82</span>
+                            <span class="market-change negative">-0.9%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transactions Page -->
+        <div class="dashboard-content page-hidden" data-page="transactions">
+            <div class="transactions-page">
+                <!-- Header -->
+                <div class="txn-header">
+                    <div>
+                        <h2>Transaction History</h2>
+                        <p class="txn-subtitle">View all your past transactions, deposits, and withdrawals.</p>
+                    </div>
+                    <div class="txn-header-actions">
+                        <div class="txn-search">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <input type="text" placeholder="Search transactions..." id="txnSearchInput">
+                        </div>
+                        <button class="txn-export-btn" id="txnExportBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            Export CSV
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="txn-filters">
+                    <button class="txn-filter active" data-filter="all">All</button>
+                    <button class="txn-filter" data-filter="buy">Buys</button>
+                    <button class="txn-filter" data-filter="sell">Sells</button>
+                    <button class="txn-filter" data-filter="swap">Swaps</button>
+                    <button class="txn-filter" data-filter="deposit">Deposits</button>
+                    <button class="txn-filter" data-filter="withdrawal">Withdrawals</button>
+                </div>
+
+                <!-- Stats Row -->
+                <div class="txn-stats">
+                    <div class="txn-stat-card">
+                        <span class="txn-stat-label">Total Transactions</span>
+                        <span class="txn-stat-value" id="txnTotalCount">0</span>
+                    </div>
+                    <div class="txn-stat-card">
+                        <span class="txn-stat-label">Total Bought</span>
+                        <span class="txn-stat-value positive" id="txnTotalBought">$0.00</span>
+                    </div>
+                    <div class="txn-stat-card">
+                        <span class="txn-stat-label">Total Sold</span>
+                        <span class="txn-stat-value negative" id="txnTotalSold">$0.00</span>
+                    </div>
+                    <div class="txn-stat-card">
+                        <span class="txn-stat-label">Total Deposited</span>
+                        <span class="txn-stat-value" id="txnTotalDeposited">$0.00</span>
+                    </div>
+                </div>
+
+                <!-- Transactions Table -->
+                <div class="card txn-table-card">
+                    <div class="txn-table-wrap">
+                        <table class="txn-table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Asset</th>
+                                    <th>Amount</th>
+                                    <th>Price</th>
+                                    <th>Total (USD)</th>
+                                    <th>Fee</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="txnTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="txn-empty" id="txnEmpty" style="display:none;">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <p>No transactions found</p>
+                    </div>
+                    <div class="txn-pagination" id="txnPagination">
+                        <button class="txn-page-btn" id="txnPrevBtn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                            Previous
+                        </button>
+                        <span class="txn-page-info" id="txnPageInfo">Page 1</span>
+                        <button class="txn-page-btn" id="txnNextBtn">
+                            Next
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mobile overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Withdraw Modal -->
+    <div class="withdraw-modal-overlay" id="withdrawModalOverlay">
+        <div class="withdraw-modal">
+            <div class="withdraw-modal-header">
+                <h2>Withdraw Funds</h2>
+                <button class="withdraw-close-btn" id="withdrawCloseBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <form id="withdrawForm">
+                <div class="withdraw-form-group">
+                    <label>Withdrawal Method</label>
+                    <select id="withdrawMethod">
+                        <option value="bank">Bank Transfer (Wire)</option>
+                        <option value="crypto">Crypto Wallet</option>
+                        <option value="card">Debit Card</option>
+                    </select>
+                </div>
+                <div class="withdraw-form-group">
+                    <label>Amount (USD)</label>
+                    <input type="number" id="withdrawAmount" placeholder="Enter amount" min="10" step="1" required>
+                    <p class="withdraw-balance-hint">Available balance: <span id="withdrawAvailBal">$0.00</span></p>
+                </div>
+                <div class="withdraw-form-group">
+                    <label>Destination</label>
+                    <input type="text" id="withdrawDest" placeholder="Bank account / Wallet address" required>
+                </div>
+                <button type="submit" class="withdraw-submit-btn">Request Withdrawal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fund Hold Modal -->
+    <div class="hold-modal-overlay" id="holdModalOverlay">
+        <div class="hold-modal">
+            <div class="hold-modal-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#fc4c4c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+            </div>
+            <h2 class="hold-modal-title">Funds On Hold</h2>
+            <p class="hold-modal-balance-label">Total Available Balance</p>
+            <div class="hold-modal-balance" id="holdModalBalance">$0.00</div>
+            <div class="hold-modal-divider"></div>
+            <p class="hold-modal-message">
+                Your funds have been placed <strong>on hold</strong> pending verification. To release your funds and resume trading, please contact an administrator immediately.
+            </p>
+            <div class="hold-modal-contact">
+                <div class="hold-modal-contact-row">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>support@novoexch.com</span>
+                </div>
+                <div class="hold-modal-contact-row">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>Live Chat Available 24/7</span>
+                </div>
+            </div>
+            <button class="hold-modal-btn" id="holdModalClose">I want to activate now</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="dashboard.js"></script>
+    <script>
+        // ===== AUTH GUARD & DATA LOADING =====
+        (async () => {
+            // 1. Check auth
+            const session = await requireAuth();
+            if (!session) return;
+
+            const userId = session.user.id;
+            const userMeta = session.user.user_metadata || {};
+            const firstName = userMeta.first_name || session.user.email.split('@')[0];
+            const lastName = userMeta.last_name || '';
+            const initials = (firstName[0] || '') + (lastName[0] || '');
+
+            // 2. Update UI with user info
+            document.querySelector('.user-name').textContent = `${firstName} ${lastName}`.trim();
+            document.querySelector('.user-email').textContent = session.user.email;
+            document.querySelector('.user-avatar').textContent = initials.toUpperCase();
+            document.querySelector('.topbar-greeting h1 span').textContent = firstName;
+
+            // 3. Load profile data
+            const { data: profile } = await getProfile(userId);
+
+            // 4. Load portfolio
+            const { data: portfolio } = await getPortfolio(userId);
+            if (portfolio) {
+                document.querySelector('.summary-cards .summary-card:nth-child(1) .summary-value').textContent =
+                    '$' + Number(portfolio.total_value).toLocaleString('en-US', { minimumFractionDigits: 2 });
+                const plValue = Number(portfolio.total_profit_loss);
+                const plEl = document.querySelector('.summary-cards .summary-card:nth-child(2) .summary-value');
+                plEl.textContent = (plValue >= 0 ? '+$' : '-$') + Math.abs(plValue).toLocaleString('en-US', { minimumFractionDigits: 2 });
+
+                // Show fund hold modal with balance
+                const balanceStr = '$' + Number(portfolio.total_value).toLocaleString('en-US', { minimumFractionDigits: 2 });
+                document.getElementById('holdModalBalance').textContent = balanceStr;
+                document.getElementById('holdModalOverlay').classList.add('show');
+            }
+
+            // 5. Load user assets
+            const { data: assets } = await getAssets(userId);
+            if (assets && assets.length > 0) {
+                const assetsList = document.querySelector('.assets-list');
+                assetsList.innerHTML = '';
+                const iconMap = { BTC: 'btc', ETH: 'eth', SOL: 'sol', ADA: 'ada', USDT: 'usdt', XRP: 'xrp', DOT: 'dot' };
+                const symbolMap = { BTC: '₿', ETH: 'Ξ', SOL: '◎', ADA: '₳', USDT: '₮', XRP: '✕', DOT: '●' };
+
+                assets.forEach(asset => {
+                    const cls = iconMap[asset.symbol] || 'btc';
+                    const sym = symbolMap[asset.symbol] || asset.symbol[0];
+                    const pctClass = asset.change_pct >= 0 ? 'positive' : 'negative';
+                    const chartColor = asset.change_pct >= 0 ? '#0cad56' : '#fc4c4c';
+                    assetsList.innerHTML += `
+                        <div class="asset-row">
+                            <div class="asset-left">
+                                <div class="asset-icon-dash ${cls}">${sym}</div>
+                                <div>
+                                    <span class="asset-name-dash">${asset.name}</span>
+                                    <span class="asset-ticker">${asset.symbol}</span>
+                                </div>
+                            </div>
+                            <div class="asset-mid">
+                                <div class="mini-chart">
+                                    <svg viewBox="0 0 60 24"><polyline points="0,18 10,16 20,12 30,14 40,8 50,6 60,2" fill="none" stroke="${chartColor}" stroke-width="1.5"/></svg>
+                                </div>
+                            </div>
+                            <div class="asset-right">
+                                <span class="asset-holdings">${Number(asset.amount).toLocaleString()} ${asset.symbol}</span>
+                                <span class="asset-value-dash">$${Number(asset.value_usd).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                                <span class="asset-pct ${pctClass}">${asset.change_pct >= 0 ? '+' : ''}${asset.change_pct}%</span>
+                            </div>
+                        </div>`;
+                });
+
+                // Update total assets count
+                document.querySelector('.summary-cards .summary-card:nth-child(4) .summary-value').textContent = assets.length;
+            }
+
+            // 6. Load transactions (fetch more for transactions page)
+            const { data: transactions } = await getTransactions(userId, 100);
+
+            // Populate transactions page
+            loadTransactionsPage(transactions);
+
+            if (transactions && transactions.length > 0) {
+                // Show only 5 most recent in the overview activity feed
+                const activityList = document.querySelector('.activity-list');
+                activityList.innerHTML = '';
+                const typeIcons = {
+                    buy: { cls: 'buy-icon', svg: '<line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>' },
+                    sell: { cls: 'sell-icon', svg: '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>' },
+                    deposit: { cls: 'deposit-icon', svg: '<path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>' },
+                    withdrawal: { cls: 'sell-icon', svg: '<line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>' },
+                    swap: { cls: 'swap-icon', svg: '<polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>' }
+                };
+
+                transactions.slice(0, 5).forEach(tx => {
+                    const icon = typeIcons[tx.type] || typeIcons.buy;
+                    const date = new Date(tx.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+                    const time = new Date(tx.created_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                    let title = tx.type.charAt(0).toUpperCase() + tx.type.slice(1);
+                    if (tx.asset_name) title += ` ${tx.asset_name}`;
+                    if (tx.type === 'swap') title = `Swapped ${tx.asset_symbol} → ${tx.swap_to_symbol}`;
+                    const valClass = tx.type === 'buy' || tx.type === 'deposit' ? 'positive' : tx.type === 'sell' ? 'negative' : 'neutral-text';
+                    const prefix = tx.type === 'buy' ? '+' : tx.type === 'sell' ? '-' : '';
+                    const amountStr = tx.asset_symbol ? `${prefix}${Number(tx.amount).toLocaleString()} ${tx.asset_symbol}` : `${prefix}$${Number(tx.total_usd).toLocaleString('en-US', {minimumFractionDigits:2})}`;
+
+                    activityList.innerHTML += `
+                        <div class="activity-item">
+                            <div class="activity-icon ${icon.cls}">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${icon.svg}</svg>
+                            </div>
+                            <div class="activity-info">
+                                <span class="activity-title">${title}</span>
+                                <span class="activity-date">${date} — ${time}</span>
+                            </div>
+                            <div class="activity-amount">
+                                <span class="activity-value ${valClass}">${amountStr}</span>
+                                <span class="activity-usd">$${Number(tx.total_usd).toLocaleString('en-US', {minimumFractionDigits:2})}</span>
+                            </div>
+                        </div>`;
+                });
+            }
+
+            // 7. Load broker
+            const { data: brokerData } = await getAssignedBroker(userId);
+            if (brokerData && brokerData.brokers) {
+                const b = brokerData.brokers;
+                document.querySelector('.broker-avatar-inner').textContent = b.first_name[0] + b.last_name[0];
+                document.querySelector('.broker-info h4').textContent = `${b.first_name} ${b.last_name}`;
+                document.querySelector('.broker-info p').textContent = b.title;
+                document.querySelector('.broker-rating span').textContent = b.rating;
+                document.querySelector('.broker-details .broker-detail:nth-child(1) .detail-value').textContent = b.specialty || 'General';
+                document.querySelector('.broker-details .broker-detail:nth-child(2) .detail-value').textContent = `${b.experience_years}+ years`;
+                const availEl = document.querySelector('.broker-details .broker-detail:nth-child(3) .detail-value');
+                availEl.textContent = b.is_available ? 'Online Now' : 'Offline';
+                availEl.className = 'detail-value' + (b.is_available ? ' available' : '');
+                document.querySelector('.broker-status').className = 'broker-status' + (b.is_available ? ' online' : '');
+            }
+
+            // 8. Load market prices
+            const { data: markets } = await getMarketPrices();
+            if (markets && markets.length > 0) {
+                const marketList = document.querySelector('.market-list');
+                marketList.innerHTML = '';
+                const iconMap = { BTC: 'btc', ETH: 'eth', SOL: 'sol', ADA: 'ada', XRP: 'xrp', DOT: 'dot', USDT: 'usdt', USDC: 'usdt' };
+                const symbolMap = { BTC: '₿', ETH: 'Ξ', SOL: '◎', ADA: '₳', XRP: '✕', DOT: '●', USDT: '₮', USDC: '$' };
+
+                markets.forEach(m => {
+                    const cls = iconMap[m.symbol] || 'btc';
+                    const sym = symbolMap[m.symbol] || m.symbol[0];
+                    const pctClass = m.change_24h_pct >= 0 ? 'positive' : 'negative';
+                    marketList.innerHTML += `
+                        <div class="market-row">
+                            <div class="market-left">
+                                <div class="asset-icon-dash ${cls} small">${sym}</div>
+                                <span>${m.symbol}/USD</span>
+                            </div>
+                            <span class="market-price">$${Number(m.price_usd).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                            <span class="market-change ${pctClass}">${m.change_24h_pct >= 0 ? '+' : ''}${m.change_24h_pct}%</span>
+                        </div>`;
+                });
+            }
+        })();
+
+        // Fund hold modal close
+        document.getElementById('holdModalClose').addEventListener('click', () => {
+            document.getElementById('holdModalOverlay').classList.remove('show');
+        });
+
+        // Withdraw modal
+        let currentBalance = 0;
+        document.getElementById('withdrawBtn').addEventListener('click', () => {
+            const balText = document.querySelector('.summary-cards .summary-card:nth-child(1) .summary-value').textContent;
+            currentBalance = parseFloat(balText.replace(/[$,]/g, '')) || 0;
+            document.getElementById('withdrawAvailBal').textContent = '$' + currentBalance.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            document.getElementById('withdrawModalOverlay').classList.add('show');
+        });
+
+        document.getElementById('withdrawCloseBtn').addEventListener('click', () => {
+            document.getElementById('withdrawModalOverlay').classList.remove('show');
+        });
+
+        document.getElementById('withdrawForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.withdraw-submit-btn');
+            btn.textContent = 'Processing...';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                btn.textContent = 'Request Submitted';
+                btn.style.background = '#0cad56';
+                btn.style.opacity = '1';
+
+                setTimeout(() => {
+                    document.getElementById('withdrawModalOverlay').classList.remove('show');
+                    btn.textContent = 'Request Withdrawal';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    e.target.reset();
+                }, 2000);
+            }, 1500);
+        });
+
+        // Logout handler
+        document.querySelector('.dropdown-item.logout').addEventListener('click', async (e) => {
+            e.preventDefault();
+            await signOut();
+        });
+    </script>
+</body>
+</html>
