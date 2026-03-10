@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | NovoExch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-hero {
+            padding: 140px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero-glow {
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(252, 76, 76, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-hero .section-tag {
+            margin-bottom: 16px;
+        }
+
+        .contact-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .contact-hero h1 span {
+            color: var(--secondary);
+        }
+
+        .contact-hero p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Contact Grid */
+        .contact-section {
+            padding: 40px 0 100px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* Contact Cards */
+        .contact-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            border-color: rgba(252, 76, 76, 0.2);
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        .contact-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-card-icon.whatsapp {
+            background: rgba(37, 211, 102, 0.12);
+            color: #25d366;
+        }
+
+        .contact-card-icon.email {
+            background: rgba(74, 108, 247, 0.12);
+            color: #4a6cf7;
+        }
+
+        .contact-card-icon.location {
+            background: rgba(252, 76, 76, 0.12);
+            color: var(--secondary);
+        }
+
+        .contact-card-icon.clock {
+            background: rgba(245, 158, 11, 0.12);
+            color: #f59e0b;
+        }
+
+        .contact-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .contact-card a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* WhatsApp CTA */
+        .whatsapp-cta {
+            margin-top: 12px;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: #25d366;
+            color: #fff;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .whatsapp-btn:hover {
+            background: #1fb855;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Contact Form */
+        .contact-form-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 36px;
+        }
+
+        .contact-form-card h2 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .contact-form-card > p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 28px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 18px;
+        }
+
+        .contact-form .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 7px;
+            color: var(--text-light);
+        }
+
+        .contact-form .form-group input,
+        .contact-form .form-group select,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--card-border);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .contact-form .form-group input::placeholder,
+        .contact-form .form-group textarea::placeholder {
+            color: var(--text-lighter);
+        }
+
+        .contact-form .form-group input:focus,
+        .contact-form .form-group select:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-form .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form .form-group select {
+            cursor: pointer;
+            appearance: none;
+            color: var(--text-lighter);
+            background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .contact-form .form-group select option {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .contact-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .contact-submit-btn {
+            width: 100%;
+            padding: 15px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--secondary);
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-submit-btn:hover {
+            background: var(--secondary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(252, 76, 76, 0.35);
+        }
+
+        .contact-submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-hero {
+                padding: 120px 0 40px;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .contact-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-card {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-hero p {
+                font-size: 0.95rem;
+            }
+
+            .contact-card {
+                padding: 20px;
+            }
+
+            .whatsapp-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="#fc4c4c"/>
+                        <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white" opacity="0.9"/>
+                        <path d="M12 16L16 12L20 16L16 20L12 16Z" fill="#fc4c4c"/>
+                    </svg>
+                </span>
+                <span class="logo-text">NovoExch</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html#services">What We Do</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#testimonials">Testimonials</a>
+                <a href="contact.html">Contact</a>
+                <div class="mobile-menu-actions">
+                    <a href="login.html" class="btn-login-menu">Log In</a>
+                    <a href="signup.html" class="btn-primary-menu">Get Started</a>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <a href="login.html" class="btn-login">Log In</a>
+                <a href="signup.html" class="btn-primary">Get Started</a>
+            </div>
+            <div class="nav-mobile-right">
+                <a href="login.html" class="btn-login mobile-login-btn">Log In</a>
+                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="contact-hero">
+        <div class="contact-hero-glow"></div>
+        <div class="container">
+            <span class="section-tag">Contact Us</span>
+            <h1>Get in Touch with<br><span>Our Team</span></h1>
+            <p>Have questions about your account, trading, or our services? We're here to help. Reach out and a member of our team will respond promptly.</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Left: Contact Info Cards -->
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <div class="contact-card-icon whatsapp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>WhatsApp</h3>
+                            <p>Chat with us directly for quick support and account enquiries.</p>
+                            <a href="https://wa.me/5491161154494" target="_blank">+54 9 11 6115-4494</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon email">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="M22 4l-10 8L2 4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>Send us a detailed message and we'll get back to you within 24 hours.</p>
+                            <a href="mailto:support@novoexch.com">support@novoexch.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon location">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Office</h3>
+                            <p>NovoExch Global HQ<br>100+ countries served worldwide</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-card-icon clock">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3>Business Hours</h3>
+                            <p>24/7 support available via WhatsApp.<br>Email responses within 24 hours.</p>
+                        </div>
+                    </div>
+
+                    <div class="whatsapp-cta">
+                        <a href="https://wa.me/5491161154494" target="_blank" class="whatsapp-btn">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            Talk to a Broker on WhatsApp
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="contact-form-card">
+                    <h2>Send us a message</h2>
+                    <p>Fill out the form and our team will get back to you shortly.</p>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Full Name</label>
+                                <input type="text" id="contactName" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email Address</label>
+                                <input type="email" id="contactEmail" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject</label>
+                            <select id="contactSubject" required>
+                                <option value="" disabled selected>Select a topic</option>
+                                <option value="account">Account Enquiry</option>
+                                <option value="trading">Trading Support</option>
+                                <option value="withdrawal">Withdrawal Issue</option>
+                                <option value="broker">Talk to a Broker</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message</label>
+                            <textarea id="contactMessage" placeholder="How can we help you?" required></textarea>
+                        </div>
+                        <button type="submit" class="contact-submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                <rect width="32" height="32" rx="8" fill="#fc4c4c"/>
+                                <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white" opacity="0.9"/>
+                                <path d="M12 16L16 12L20 16L16 20L12 16Z" fill="#fc4c4c"/>
+                            </svg>
+                        </span>
+                        <span class="logo-text">NovoExch</span>
+                    </a>
+                    <p class="footer-desc">Your personal crypto brokerage. Expert guidance, personalised service, and secure trading — all in one place.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </a>
+                        <a href="#" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+                        </a>
+                        <a href="#" aria-label="Telegram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Meet the Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">News</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <a href="#">Personal Brokerage</a>
+                    <a href="#">OTC Trading</a>
+                    <a href="#">Portfolio Management</a>
+                    <a href="#">Secure Storage</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Crypto Guides</a>
+                    <a href="#">Market Updates</a>
+                    <a href="#">API Documentation</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">AML Policy</a>
+                    <a href="#">Risk Disclosure</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NovoExch. All rights reserved.</p>
+                <p>NovoExch is a registered trading name. Cryptocurrency trading involves significant risk.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('.contact-submit-btn');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent = 'Message Sent!';
+                btn.style.background = '#0cad56';
+                e.target.reset();
+                setTimeout(() => {
+                    btn.textContent = 'Send Message';
+                    btn.style.background = '';
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
