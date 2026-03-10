@@ -815,7 +815,9 @@
             }
 
             // 6. Load transactions (fetch more for transactions page)
-            const { data: transactions } = await getTransactions(userId, 100);
+            const { data: transactions, error: txnError } = await getTransactions(userId, 100);
+            if (txnError) console.error('Transactions error:', txnError);
+            console.log('Transactions loaded:', transactions);
 
             // Populate transactions page
             loadTransactionsPage(transactions);
