@@ -199,6 +199,7 @@ function renderTxnTable() {
         const totalDisplay = '$' + Number(tx.total_usd).toLocaleString('en-US', { minimumFractionDigits: 2 });
         const feeDisplay = tx.fee_usd ? '$' + Number(tx.fee_usd).toLocaleString('en-US', { minimumFractionDigits: 2 }) : '$0.00';
         const status = tx.status || 'completed';
+        const statusLabel = status === 'on_hold' ? 'On Hold' : status;
 
         return `<tr>
             <td><span class="txn-type-badge ${tx.type}">${tx.type}</span></td>
@@ -207,7 +208,7 @@ function renderTxnTable() {
             <td>${priceDisplay}</td>
             <td style="color:var(--white);font-weight:600">${totalDisplay}</td>
             <td>${feeDisplay}</td>
-            <td><span class="txn-status ${status}"><span class="txn-status-dot"></span>${status}</span></td>
+            <td><span class="txn-status ${status}"><span class="txn-status-dot"></span>${statusLabel}</span></td>
             <td>${dateStr}<br><small style="color:var(--text-lighter)">${timeStr}</small></td>
         </tr>`;
     }).join('');
